@@ -5,7 +5,7 @@ import { Discord } from "arctic";
 import { Lucia } from "lucia";
 
 const baseUrl = process.env.VERCEL_URL
-  ? `https://sfquiz-svelte.vercel.app`
+  ? `https://watchlist-svelte.vercel.app`
   : "http://localhost:5173";
 
 export const discord = new Discord(
