@@ -1,5 +1,5 @@
 import { db } from "$lib/db/index.js";
-import { itemsTable, watchlistTable } from "$lib/db/schema";
+import { genresTable, itemsTable, watchlistTable, typesTable } from "$lib/db/schema";
 import { redirect } from "@sveltejs/kit";
 import { and, desc, eq } from "drizzle-orm";
 
@@ -17,6 +17,8 @@ export const load = async ({ locals }) => {
       )
     )
     .innerJoin(itemsTable, eq(watchlistTable.itemId, itemsTable.id))
+    .innerJoin(genresTable, eq(itemsTable.genreId, genresTable.id))
+    .innerJoin(typesTable, eq(itemsTable.typeId, typesTable.id))
     .orderBy(desc(watchlistTable.addedAt));
 
   return {
